@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cartel – Ambuvía</title>
+<style>
+  /* Cartel 150 cm (ancho) x 120 cm (alto). Tres columnas de 50 cm. Tipografía: Arial. */
+  @page { size: 1500mm 1200mm; margin: 0; }
+  :root {
+    --navy: #12263f;
+    --ink: #1c2530;
+    --muted: #55606e;
+    --line: #c9d1db;
+    --paper: #ffffff;
+    --soft: #f1f4f8;
+    --green: #1e9e4a;
+    --amber: #f2a900;
+    --red: #d8402f;
+    --blue: #1273c4;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1500mm; height: 1200mm; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    font-size: 12mm;
+    line-height: 1.3;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .poster { width: 1500mm; height: 1200mm; display: flex; flex-direction: column; overflow: hidden; }
+
+  /* ---------- Título ---------- */
+  header {
+    height: 150mm; background: var(--navy); color: #fff;
+    display: flex; align-items: center; gap: 28mm; padding: 0 30mm;
+    border-bottom: 6mm solid var(--amber);
+  }
+  .lights { display: flex; flex-direction: column; gap: 5mm; background: #0a1626; padding: 7mm; border-radius: 12mm; }
+  .lights i { display: block; width: 26mm; height: 26mm; border-radius: 50%; }
+  .lights i:nth-child(1) { background: #5a2620; }
+  .lights i:nth-child(2) { background: #5c4a14; }
+  .lights i:nth-child(3) { background: #2fd866; box-shadow: 0 0 10mm #2fd866; }
+  header h1 { font-size: 39mm; line-height: 1.08; font-weight: 700; letter-spacing: -0.3mm; }
+  header p { font-size: 15mm; margin-top: 5mm; color: #cfd9e6; }
+  header .who { margin-left: auto; text-align: right; font-size: 12mm; line-height: 1.35; color: #cfd9e6; white-space: nowrap; }
+  header .who b { color: #fff; font-size: 13.5mm; }
+
+  /* ---------- Columnas ---------- */
+  main { flex: 1; display: flex; min-height: 0; }
+  .col {
+    width: 500mm; padding: 16mm 22mm 16mm;
+    display: flex; flex-direction: column; justify-content: space-between; gap: 8mm;
+    border-right: 1.2mm solid var(--line);
+  }
+  .col:last-child { border-right: 0; }
+  section h2 {
+    font-size: 19mm; line-height: 1; text-transform: uppercase; letter-spacing: 0.4mm;
+    color: var(--navy); padding: 0 0 4mm 9mm; margin-bottom: 6mm;
+    border-left: 5mm solid var(--green); border-bottom: 1mm solid var(--line);
+  }
+  section.meta h2 { color: var(--blue); border-left-color: var(--blue); }
+  section.key h2 { border-left-color: var(--red); }
+  p + p, p + ul, ul + p { margin-top: 4mm; }
+  ul { list-style: none; }
+  ul li { position: relative; padding-left: 9mm; margin-top: 2.5mm; }
+  ul li::before { content: ""; position: absolute; left: 0; top: 4.6mm; width: 4.4mm; height: 4.4mm; border-radius: 50%; background: var(--green); }
+  b, strong { font-weight: 700; }
+  .cap { font-size: 8.6mm; color: var(--muted); margin-top: 3mm; line-height: 1.25; }
+  .cap b { color: var(--ink); }
+  figure img { display: block; width: 100%; }
+  .frame { border: 0.8mm solid var(--line); border-radius: 4mm; overflow: hidden; background: #fff; }
+
+  /* Gráfica de barras horizontal */
+  .bars { background: var(--soft); border-radius: 4mm; padding: 6mm 8mm; }
+  .bars .row { display: flex; align-items: center; gap: 5mm; margin: 3mm 0; font-size: 10.4mm; }
+  .bars .lab { width: 132mm; text-align: right; }
+  .bars .track { flex: 1; }
+  .bars .bar { height: 18mm; border-radius: 2mm; background: #8b98a8; display: flex; align-items: center; justify-content: flex-end; padding-right: 3mm; color: #fff; font-weight: 700; white-space: nowrap; }
+  .bars .bar.hot { background: var(--red); }
+  .bars .bar.ok { background: var(--green); }
+
+  /* ODS */
+  .ods { display: flex; gap: 5mm; margin-top: 5mm; }
+  .ods div { flex: 1; border-radius: 4mm; padding: 5mm 6mm; color: #fff; font-size: 9.4mm; line-height: 1.2; }
+  .ods div b { display: block; font-size: 12mm; margin-bottom: 1mm; }
+  .ods .o3 { background: #3f9b3a; } .ods .o9 { background: #e8641f; } .ods .o11 { background: #e59a1c; }
+
+  /* Tablas */
+  table { width: 100%; border-collapse: collapse; font-size: 10mm; line-height: 1.22; }
+  th { background: var(--navy); color: #fff; text-align: left; padding: 3.5mm 5mm; font-size: 10.2mm; }
+  td { padding: 3.6mm 5mm; border-bottom: 0.6mm solid var(--line); vertical-align: top; }
+  tr:nth-child(even) td { background: var(--soft); }
+  td:first-child { font-weight: 700; white-space: nowrap; }
+  td.yes { color: var(--green); font-weight: 700; white-space: nowrap; }
+
+  /* Recorte del diagrama del sistema (quita márgenes en blanco del original) */
+  .crop { position: relative; width: 100%; aspect-ratio: 1330 / 985; overflow: hidden; }
+  .crop img { position: absolute; width: 144.36%; left: -22.56%; top: -4.57%; }
+
+  /* Pasos del algoritmo */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+  .steps div { background: var(--soft); border-radius: 4mm; padding: 4.5mm 5mm 5mm 5mm; font-size: 9.3mm; line-height: 1.2; border-top: 2.4mm solid var(--green); }
+  .steps div b { display: block; font-size: 10.6mm; color: var(--navy); margin-bottom: 1.5mm; }
+  .steps div b span { display: inline-block; width: 11mm; height: 11mm; line-height: 11mm; text-align: center; border-radius: 50%; background: var(--navy); color: #fff; margin-right: 2.5mm; font-size: 8mm; }
+
+  /* Cifras destacadas */
+  .stats { display: flex; gap: 6mm; }
+  .stat { flex: 1; border-radius: 5mm; padding: 7mm 7mm 8mm; color: #fff; background: var(--navy); }
+  .stat.g { background: var(--green); }
+  .stat.r { background: var(--red); }
+  .stat .n { font-size: 46mm; font-weight: 700; line-height: 1; letter-spacing: -0.8mm; }
+  .stat .n small { font-size: 20mm; }
+  .stat .t { font-size: 10mm; line-height: 1.2; margin-top: 3mm; }
+
+  .charts { display: flex; gap: 8mm; align-items: stretch; margin-top: 7mm; }
+  .chart { flex: 1; background: var(--soft); border-radius: 4mm; padding: 6mm 7mm; }
+  .chart h3 { font-size: 11mm; color: var(--navy); margin-bottom: 4mm; line-height: 1.15; }
+  .donut { display: flex; align-items: center; gap: 6mm; }
+  .donut svg { width: 112mm; height: 112mm; flex: none; }
+  .legend { font-size: 10mm; line-height: 1.3; }
+  .legend i { display: inline-block; width: 6mm; height: 6mm; border-radius: 1.2mm; margin-right: 2.5mm; vertical-align: -0.6mm; }
+  .vbars { display: flex; align-items: flex-end; justify-content: space-around; height: 96mm; border-bottom: 0.8mm solid #8b98a8; }
+  .vbars div { width: 52mm; border-radius: 2mm 2mm 0 0; color: #fff; font-weight: 700; font-size: 12mm; text-align: center; padding-top: 2.5mm; }
+  .vlabels { display: flex; justify-content: space-around; font-size: 8.8mm; text-align: center; line-height: 1.2; margin-top: 2.5mm; }
+  .vlabels span { width: 100mm; }
+
+  .note { background: #fff6dc; border-left: 3mm solid var(--amber); border-radius: 2mm; padding: 5mm 6mm; font-size: 10.6mm; margin-top: 6mm; }
+
+  .refs { font-size: 8.3mm; line-height: 1.26; }
+  .refs p { padding-left: 9mm; text-indent: -9mm; margin-top: 2.4mm; }
+  .refs p:first-child { margin-top: 0; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <header>
+    <div class="lights"><i></i><i></i><i></i></div>
+    <div>
+      <h1>Ambuvía: Sistema de Coordinación Semafórica para Vehículos de Emergencia</h1>
+      <p>Prototipo a escala de semáforos inteligentes que ceden el paso a la ambulancia de forma automática</p>
+    </div>
+    <!-- EDITAR: nombres del equipo, categoría y nivel -->
+    <div class="who"><b>Integrantes</b><br>Andrés Eduardo Rodríguez Coronado<br>Daniel Salazar Dominguez<br>Gerardo Alberto Garay</div>
+  </header>
+
+  <main>
+    <!-- ===================== COLUMNA 1 ===================== -->
+    <div class="col">
+      <section>
+        <h2>Introducción</h2>
+        <p>El tiempo de respuesta de una ambulancia influye directamente en la supervivencia del paciente. Los semáforos convencionales <b>no detectan</b> la aproximación de una ambulancia ni modifican sus señales, por lo que el conductor depende de la sirena y de la colaboración de otros conductores.</p>
+        <p>En Alemania, el <b>30 %</b> de 189 accidentes con vehículos de emergencia (2009-2015) ocurrió al cruzar intersecciones con luz roja (Chen et al., 2024).</p>
+        <figure style="margin-top:5mm">
+          <div class="bars">
+            <div class="row"><div class="lab">Estados Unidos (2023)</div><div class="track"><div class="bar" style="width:35.5%">7.1 min</div></div></div>
+            <div class="row"><div class="lab">Inglaterra (2024-2025)</div><div class="track"><div class="bar" style="width:41.6%">8.3 min</div></div></div>
+            <div class="row"><div class="lab">Chihuahua (abril 2026)</div><div class="track"><div class="bar hot" style="width:100%">≈ 20 min</div></div></div>
+          </div>
+          <p class="cap"><b>Gráfica 1.</b> Tiempo de respuesta de servicios médicos de emergencia. Elaboración propia con datos de NEMSIS (2023), Care Quality Commission (2025) y Secretaría de Salud de Chihuahua (2026).</p>
+        </figure>
+      </section>
+
+      <section>
+        <h2>Antecedentes</h2>
+        <ul>
+          <li><b>Khan et al. (2024):</b> unidad a bordo con GPS y puntos de acceso en cada cruce; requiere equipo especializado.</li>
+          <li><b>Kavitha et al. (2023):</b> GPS + radio DSRC de corto alcance; evaluación solo cualitativa, en una intersección.</li>
+          <li><b>Siddiqi et al. (2023):</b> Arduino + GSM/SMS con <b>activación manual</b>; ≈ 5 s para cambiar la señal.</li>
+        </ul>
+        <figure style="margin-top:5mm">
+          <div class="frame"><img src="img/fig_khan.png" alt="Sistema V2I-VTL"></div>
+          <p class="cap"><b>Figura 1.</b> Funcionamiento del sistema V2I-VTL. Adaptado de Khan et al. (2024, Fig. 1).</p>
+        </figure>
+        <p style="margin-top:4mm">Las propuestas existentes dependen de infraestructura específica o de la intervención del operador.</p>
+      </section>
+
+      <section class="meta">
+        <h2>Meta de ingeniería</h2>
+        <p>Diseñar, desarrollar e implementar un <b>prototipo a escala de un semáforo inteligente</b> capaz de detectar automáticamente la aproximación de una ambulancia y otorgarle prioridad de paso en una intersección, integrando <b>GPS y comunicación celular 4G LTE</b>, sin intervención manual del conductor.</p>
+        <p>Se comprueba con pruebas experimentales de comunicación, tiempo de respuesta, activación y restablecimiento del ciclo, en un entorno controlado.</p>
+      </section>
+
+      <section>
+        <h2>Justificación</h2>
+        <p>Los retrasos y los cruces con luz roja ponen en riesgo a paramédicos, pacientes y conductores. Automatizar la prioridad de paso aprovechando la <b>red celular que ya existe</b> es una alternativa de bajo costo con potencial para la ciudad de Chihuahua.</p>
+        <div class="ods">
+          <div class="o3"><b>ODS 3.6</b>Salud y bienestar: menos accidentes viales</div>
+          <div class="o9"><b>ODS 9.1</b>Infraestructura moderna y resiliente</div>
+          <div class="o11"><b>ODS 11.2</b>Movilidad urbana segura y eficiente</div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================== COLUMNA 2 ===================== -->
+    <div class="col">
+      <section>
+        <h2>Objetivos</h2>
+        <p><b>General:</b> diseñar y desarrollar un prototipo a escala de semáforos inteligentes con GPS y 4G LTE que detecte automáticamente una ambulancia y le otorgue prioridad de paso, evaluando su funcionamiento y tiempos de respuesta.</p>
+        <ul>
+          <li>Diseñar la arquitectura de comunicación ambulancia-semáforo.</li>
+          <li>Desarrollar el control que detecta la aproximación y cambia las señales.</li>
+          <li>Construir una intersección a escala con cuatro semáforos.</li>
+          <li>Registrar semáforos, vehículos e historial en una base de datos.</li>
+          <li>Medir detección, tiempos y restablecimiento del ciclo.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Metodología</h2>
+        <table>
+          <tr><th>Capa</th><th>Función</th><th>Componentes</th></tr>
+          <tr><td>Adquisición</td><td>Leer posición y rumbo</td><td>Teléfono inteligente, página web (GPS y brújula)</td></tr>
+          <tr><td>Transporte</td><td>Enviar datos seguros</td><td>Datos 4G, VPN privada, HTTPS, token</td></tr>
+          <tr><td>Procesamiento</td><td>Validar y decidir</td><td>Servidor en Python (FastAPI)</td></tr>
+          <tr><td>Persistencia</td><td>Guardar historial</td><td>Base de datos PostgreSQL en la nube</td></tr>
+          <tr><td>Actuación</td><td>Cambiar el semáforo</td><td>Arduino Uno, 12 LED, resistencias de 220 Ω</td></tr>
+        </table>
+        <p class="cap"><b>Tabla 1.</b> Capas del sistema y materiales. Elaboración propia.</p>
+
+        <figure style="margin-top:5mm; padding: 0 12mm">
+          <div class="frame"><div class="crop"><img src="img/fig_sistema.png" alt="Diagrama de bloques del sistema"></div></div>
+        </figure>
+        <p class="cap"><b>Figura 2.</b> Diagrama de bloques del sistema. Elaboración propia.</p>
+
+        <div class="steps" style="margin-top:5mm">
+          <div><b><span>1</span>Validación</b>Token correcto y placa del vehículo registrada.</div>
+          <div><b><span>2</span>Cálculo</b>Distancia (Haversine) y rumbo hacia cada semáforo.</div>
+          <div><b><span>3</span>Filtrado</b>Radio ≤ 150 m, rumbo ± 35° y semáforo al frente.</div>
+          <div><b><span>4</span>Selección</b>Se elige el semáforo candidato más cercano.</div>
+          <div><b><span>5</span>Cruce</b>Verde para la ambulancia; rojo en el sentido opuesto.</div>
+          <div><b><span>6</span>Retorno</b>Sin posiciones nuevas, vuelve al ciclo normal.</div>
+        </div>
+        <p class="cap"><b>Figura 3.</b> Algoritmo de decisión, ejecutado cada segundo. Elaboración propia.</p>
+      </section>
+
+      <section>
+        <h2>Creatividad e innovación</h2>
+        <ul>
+          <li><b>Sin equipo especializado:</b> la ambulancia solo necesita un teléfono con navegador; no se instala ninguna aplicación.</li>
+          <li><b>Activación automática</b> por posición y orientación, sin que el paramédico presione nada.</li>
+          <li><b>Usa la red 4G existente:</b> no requiere cámaras con inteligencia artificial (Noor et al., 2026), drones (Chowdhury et al., 2023) ni antenas en cada cruce.</li>
+          <li><b>Un solo servidor</b> puede coordinar varios semáforos y deja historial para analizar su desempeño.</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- ===================== COLUMNA 3 ===================== -->
+    <div class="col">
+      <section class="key">
+        <h2>Resultados</h2>
+        <div class="stats">
+          <div class="stat g"><div class="n">95<small> %</small></div><div class="t">de activaciones exitosas<br>(19 de 20 casos de prueba)</div></div>
+          <div class="stat"><div class="n">1<small> s</small></div><div class="t">desde la petición hasta el inicio del cambio a verde</div></div>
+          <div class="stat r"><div class="n">8<small> s</small></div><div class="t">para volver al ciclo normal al dejar de apuntar</div></div>
+        </div>
+
+        <div class="charts">
+          <div class="chart">
+            <h3>Casos de prueba (n = 20)</h3>
+            <div class="donut">
+              <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#d8402f" stroke-width="18"/>
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#1e9e4a" stroke-width="18" stroke-dasharray="226.82 238.76" transform="rotate(-90 50 50)"/>
+                <text x="50" y="57" text-anchor="middle" font-family="Arial" font-weight="700" font-size="19" fill="#12263f">19/20</text>
+              </svg>
+              <div class="legend"><p><i style="background:#1e9e4a"></i>Exitosos: 19</p><p><i style="background:#d8402f"></i>Fallidos: 1</p></div>
+            </div>
+          </div>
+          <div class="chart">
+            <h3>Tiempo para cambiar la señal</h3>
+            <div class="vbars">
+              <div style="height:100%; background:#8b98a8">≈ 5 s</div>
+              <div style="height:20%; background:#1e9e4a; padding-top:1mm">1 s</div>
+            </div>
+            <div class="vlabels"><span>SMS manual<br>(Siddiqi et al., 2023)</span><span>Este prototipo<br>(automático)</span></div>
+          </div>
+        </div>
+        <p class="cap"><b>Gráficas 2 y 3.</b> Activaciones exitosas y tiempo de cambio de señal. Elaboración propia; el valor de referencia proviene de Siddiqi et al. (2023), medido en condiciones distintas.</p>
+
+        <table style="margin-top:5mm">
+          <tr><th>Prueba</th><th>Resultado</th><th></th></tr>
+          <tr><td>Servidor y base de datos</td><td>Responde en modo simulación y en la nube</td><td class="yes">✔</td></tr>
+          <tr><td>Teléfono → servidor</td><td>Envío por 4G con VPN y HTTPS</td><td class="yes">✔</td></tr>
+          <tr><td>Orientación y distancia</td><td>Activa dentro del rango; fuera no actúa</td><td class="yes">✔</td></tr>
+          <tr><td>Arduino y LED</td><td>Transición segura y regreso al ciclo</td><td class="yes">✔</td></tr>
+        </table>
+        <p class="cap"><b>Tabla 2.</b> Pruebas por capas del prototipo. Elaboración propia.</p>
+
+        <div class="note"><b>Limitaciones:</b> la precisión del GPS y la brújula del teléfono obligó a ampliar el margen a 200 m y ± 40°; la brújula se calibra manualmente. No se probó en un vehículo en movimiento ni con varias ambulancias.</div>
+      </section>
+
+      <section class="key">
+        <h2>Conclusiones</h2>
+        <ul>
+          <li>Es <b>posible</b> dar prioridad de paso a una ambulancia con tecnologías accesibles: GPS, 4G LTE, un servidor y un Arduino.</li>
+          <li>El semáforo respondió en <b>1 segundo</b> y de forma <b>automática</b>, con <b>95 %</b> de activaciones exitosas.</li>
+          <li>Una implementación completa podría reducir retrasos, mejorar la seguridad vial y disminuir emisiones y ruido.</li>
+          <li>Trabajo futuro: mejorar la precisión, sincronizar cruces consecutivos y probar en un vehículo real.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Referencias bibliográficas</h2>
+        <div class="refs">
+          <p>Chen, Y.-Y., Wang, J.-Y., Lo, S.-C., &amp; Sung, W.-T. (2024). An emergency vehicle traffic signal preemption system considering queue spillbacks along routes and negative impacts on non-priority traffic. <i>IET Intelligent Transport Systems, 18</i>(8), 1385–1395.</p>
+          <p>Chowdhury, A., Kaisar, S., Khoda, M. E., Naha, R., Khoshkholghi, M. A., &amp; Aiash, M. (2023). IoT-based emergency vehicle services in intelligent transportation system. <i>Sensors, 23</i>(11), Artículo 5324.</p>
+          <p>Kavitha, Y., Satyanarayana, P., &amp; Mirza, S. S. (2023). Sensor based traffic signal pre-emption for emergency vehicles using efficient short-range communication network. <i>Measurement: Sensors, 28</i>, Artículo 100830.</p>
+          <p>Khan, A., Rahman, S. u., Ullah, F., Khattak, M. I., Bait-Suwailam, M. M., &amp; El Sayed, H. (2024). V2I-VTL: IoT-enabled adaptive traffic light controller and emission reduction at intersection. <i>PeerJ Computer Science, 10</i>, Artículo e2507.</p>
+          <p>Noor, A., Algrafi, Z., Alharbi, B., Alharbi, G., &amp; Noor, T. H. (2026). ITLMS: An intelligent traffic light management system using edge computing and deep learning. <i>PeerJ Computer Science, 12</i>, Artículo e3858.</p>
+          <p>Siddiqi, M. H., Alruwaili, M., Tarimer, İ., Karadağ, B. C., Alhwaiti, Y., &amp; Khan, F. (2023). Development of a smart signalization for emergency vehicles. <i>Sensors, 23</i>(10), Artículo 4703.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</body>
+</html>
